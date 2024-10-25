@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+
+    <title>Roger's Photogrphy </title>
+
+</head>
+<body style="background-color: rgb(233, 235, 235);">
+    <header >
+        <div class="hd">
+            <h1 class="display-2 text-light">RGS Photography</h1>
+        </div>
+        
+    </header>
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center" style="position: sticky; z-index: 100; top: 0;">
+      <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
+          <ul class="navbar-nav mx-auto text-center nav-fill w-50">
+              <li class="nav-item active">
+                  <a class="nav-link" id="index" href="/">Home<span class="sr-only"></span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="gallery" href="#gallo"> Gallery</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="pricing" href="#pic-price">Pricing</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="about" href="#about-r">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="about" href="#contact">Cantact</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
+              <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/reallygreatshots"><i class="fa fa-facebook mr-1"></i></a> </li>
+          </ul>
+      </div>
+    </nav>
+    <section  class="intro">
+        <div class="welcome">
+            <h1 style="font-family: Arial; font-size: 60px;">Welcome</h1>
+            <h1 style="font-family: Arial; font-size: 60px;">My Picture of the day</h1>
+            <img src="{{ url_for('static', filename='images/' + filename) }}" alt="Pic of the Day" class="img-fluid" style="width: 500px;">
+            <h1>Please enjoy some of the work that I've done</h1>
+        </div>
+    </section>    
+      
+        
+    <section id="gallo">
+        <div class="gallery-buttons">
+            <div class="button-group-top">
+                <form method="POST" action="#gallo">
+                    <button type="submit" name="gallery" value="sen-por" class="btn btn-info mb-2 me-2">Senior Portraits</button>
+                    <button type="submit" name="gallery" value="baby-pic" class="btn btn-info mb-2 me-2">Infant & Baby</button>
+                    <button type="submit" name="gallery" value="special-events" class="btn btn-info mb-2 me-2">Special Events</button>
+                    <button type="submit" name="gallery" value="pets" class="btn btn-info mb-2 me-2">Pets</button>
+                </form>
+            </div>
+            <div class="button-group-bottom">
+                <form method="POST" action="#gallo">
+                    <button type="submit" name="gallery" value="headshots" class="btn btn-info mb-2 me-2">Corporate Head Shots</button>
+                    <button type="submit" name="gallery" value="sports" class="btn btn-info mb-2 me-2">Sports</button>
+                    <button type="submit" name="gallery" value="landscapes" class="btn btn-info mb-2 me-2">Landscapes</button>
+                </form>
+            </div>
+        </div>  
+    </section>
+
+    <section id="carousel-section">
+        <div class="gallery">
+            {% if selected_gallery == 'sen-por' %}
+                <div id="sen-por" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" >
+                        <div class="carousel-item active">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/senior-pic/sen-por1.jpg') }}" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/senior-pic/sen-por2.jpg') }}" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/senior-pic/sen-por3.jpg') }}" alt="Third slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/senior-pic/sen-por4.jpg') }}" alt="Forth slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/senior-pic/sen-por5.jpg') }}" alt="Fifth slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/senior-pic/sen-por6.jpg') }}" alt="Sixth slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/senior-pic/sen-por7.jpg') }}" alt="Seventh slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/senior-pic/sen-por8.jpg') }}" alt="Eighth slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/senior-pic/sen-por9.jpg') }}" alt="Ninth slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/senior-pic/sen-por10.jpg') }}" alt="Tenth slide">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#sen-por" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#sen-por" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            {% elif selected_gallery == 'baby-pic' %}
+                <div id="baby-pic" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/infant-pic/baby1.jpg') }}" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/infant-pic/baby2.jpg') }}" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/infant-pic/baby3.jpg') }}" alt="Third slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/infant-pic/baby4.jpg') }}" alt="Forth slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/infant-pic/baby5.jpg') }}" alt="Fifth slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/infant-pic/baby6.jpg') }}" alt="Sixth slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/infant-pic/baby7.jpg') }}" alt="Seventh slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/infant-pic/baby8.jpg') }}" alt="Eighth slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/infant-pic/baby9.jpg') }}" alt="Ninth slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/infant-pic/baby10.jpg') }}" alt="Tenth slide">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#baby-pic" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#baby-pic" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            {% elif selected_gallery == 'special-events' %}
+            <div id="special-events" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sp-events-pic/event1.jpg') }}" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sp-events-pic/event2.jpg') }}" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sp-events-pic/event3.jpg') }}" alt="Third slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sp-events-pic/event4.jpg') }}" alt="Forth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sp-events-pic/event5.jpg') }}" alt="Fifth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sp-events-pic/event6.jpg') }}" alt="Sixth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sp-events-pic/event7.jpg') }}" alt="Seventh slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sp-events-pic/event8.jpg') }}" alt="Eighth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sp-events-pic/event9.jpg') }}" alt="Ninth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sp-events-pic/event10.jpg') }}" alt="Tenth slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#special-events" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#special-events" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            {% elif selected_gallery == 'pets' %}
+            <div id="pets" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/pets-pic/c') }}" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/pets-pic/pet2.jpg') }}" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/pets-pic/pet3.jpg') }}" alt="Third slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/pets-pic/pet4.jpg') }}" alt="Forth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/pets-pic/pet5.jpg') }}" alt="Fifth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/pets-pic/pet6.jpg') }}" alt="Sixth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/pets-pic/pett7.jpg') }}" alt="Seventh slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/pets-pic/pet8.jpg') }}" alt="Eighth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/pets-pic/pet9.jpg') }}" alt="Ninth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/pets-pic/pet10.jpg') }}" alt="Tenth slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#pets" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#pets" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            {% elif selected_gallery == 'headshots' %}
+            <div id="headshots" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/headshot-pic/headshot1.jpg') }}" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/headshot-pic/headshot2.jpg') }}" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/headshot-pic/headshot3.jpg') }}" alt="Third slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/headshot-pic/headshot4.jpg') }}" alt="Forth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/headshot-pic/headshot5.jpg') }}" alt="Fifth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/headshot-pic/headshot6.jpg') }}" alt="Sixth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/headshot-pic/headshot7.jpg') }}" alt="Seventh slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/headshot-pic/headshot8.jpg') }}" alt="Eighth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/headshot-pic/headshot9.jpg') }}" alt="Ninth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/headshot-pic/headshot10.jpg') }}" alt="Tenth slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#headshots" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#headshots" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            {% elif selected_gallery == 'sports' %}
+            <div id="sports" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sports-pic/sports1.jpg') }}" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sports-pic/sports2.jpg') }}" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sports-pic/sports3.jpg') }}" alt="Third slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sports-pic/sports4.jpg') }}" alt="Forth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sports-pic/sports5.jpg') }}" alt="Fifth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sports-pic/sports6.jpg') }}" alt="Sixth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sports-pic/sports7.jpg') }}" alt="Seventh slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sports-pic/sports8.jpg') }}" alt="Eighth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sports-pic/sports9.jpg') }}" alt="Ninth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/sports-pic/sports10.jpg') }}" alt="Tenth slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#sports" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#sports" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            {% elif selected_gallery == 'landscapes' %}
+            <div id="landscapes" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/landscape-pic/landscape1.jpg') }}" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/landscape-pic/landscape2.jpg') }}" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/landscape-pic/landscape3.jpg') }}" alt="Third slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/landscape-pic/landscape4.jpg') }}" alt="Forth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/landscape-pic/landscape5.jpg') }}" alt="Fifth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/landscape-pic/landscape6.jpg') }}" alt="Sixth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/landscape-pic/landscape7.jpg') }}" alt="Seventh slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/landscape-pic/landscape8.jpg') }}" alt="Eighth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/landscape-pic/landscape9.jpg') }}" alt="Ninth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto d-block" src="{{ url_for('static', filename='picture/landscape-pic/landscape10.jpg') }}" alt="Tenth slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#landscapes" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#landscapes" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            {% endif %}
+        </div>    
+    </section>
+            
+    <section id="pic-price" class="ftco-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center pb-5 mb-3">
+                
+                <div class="col-md-7 heading-section text-center ftco-animate fadeInUp ftco-animated">
+                    <br>
+                    <br>
+                    <h2>Affordable Pricing</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                    <div class="block-7">
+                        <!-- <div class="img" style="background-image: url(https://www.bootdey.com/image/350x280/FFB6C1/000000);"></div> -->
+                        <div class="text-center p-4">
+                            <h1 >Services</h1>  
+                            <br>                          
+                            <ul class="pricing-text mb-5">
+                                <li><span class="fa fa-check mr-1"></span>Corporate Head Shot</li>
+                                <span class="price"><sup>$</sup> <span class="number">25.00</span> </span>
+                                <li><span class="fa fa-check mr-2"></span>20min Mini Session Indoor or Out </li>
+                                <span class="price"><sup>$</sup> <span class="number">60.00</span></span>
+                                <li><span class="fa fa-check mr-2"></span>1hr Seassion 2-Locations</li>
+                                <span class="price"><sup>$</sup> <span class="number">150.00</span> </span>
+                                <li><span class="fa fa-check mr-2"></span>2hr Multiple Locations</li>
+                                <span class="price"><sup>$</sup> <span class="number">250.00</span></span>
+                            </ul>
+                            <p><span class="fa mr-2"></span>Message me for special event & drone prices and I can taylor a session to meet your needs.</p>
+                            <br>
+                            <a href="#contact" class="btn btn-primary d-block px-2 py-3">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                    <div class="block-7">
+                        <!-- <div class="img" style="background-image: url(https://www.bootdey.com/image/350x280/87CEFA/000000);"></div> -->
+                        <div class="text-center p-4">
+                            <h1>Prints</h1>    
+                            <br>                        
+                            <ul class="pricing-text mb-5">
+                                <li><span class="fa fa-check mr-1"></span>Digital Copy E-mail</li>
+                                <span class="price"><sup>$</sup> <span class="number">10.00</span></span>
+                                <li><span class="fa fa-check mr-2"></span>5x7 Print</li>
+                                <span class="price"><sup>$</sup> <span class="number">15.00</span> </span>
+                                <li><span class="fa fa-check mr-2"></span>8x10 Print</li>
+                                <span class="price"><sup>$</sup> <span class="number">25.00</span></span>
+                                <li><span class="fa fa-check mr-2"></span>11x14 Print</li>
+                                <span class="price"><sup>$</sup> <span class="number">30.00</span></span> 
+                                <li><span class="fa fa-check mr-2"></span>13x19 Print</li>
+                                <span class="price"><sup>$</sup> <span class="number">35.00</span></span>  
+             
+                            </ul>
+                            <p><span class="fa mr-2"></span>Message for prices on canvas, metal, or acylc and for larger or special sizes.</p>
+                            <br>
+                            <a href="#contact" class="btn btn-primary d-block px-2 py-3">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about-r">
+        <div id="about-s" class="text-center">
+            <p class="h1">Hello!</p>
+            <br>
+            <img src="static/picture/aboutheadshot.jpg" alt="RogerSpurgeon" class="img-fluid" style=" border-radius: 35%; width: 500px; margin: 40px 0px">
+            <br>
+            <h1>
+                Thank you for coming to my site here is a little about me!
+            </h1>
+            <br>
+            <p>
+                My name is Roger Spurgeon. Let me tell you a little about myself and my photography experience. 
+                I was born and raised here in Ottumwa. I enlisted the United  Marine Corps in 1980, served 4 years  then returned to Ottumwa. 
+                Worked at Musco Lighting for 5 years, doing the lighting for movies and collage football.Then  moved to California in 1992 to 
+                work for BeBee Night Lights again doing the lighting for major motion pictures and TV shows. I retired in 2023 and moved back to Ottumwa.
+            </p>
+            <p>
+                I bought my first camera in Okinawa Japan while in the Marine Corps, it was film back then and that is when my passion for photography began. 
+                I have always had a nice camera since. In 1995 I worked part time at the Perris Valley Skydiving school in California as a free fall camera man and videographer. 
+                I took pictures and videos of students making their first skydives and also worked with experienced skydivers jumping from planes, balloons and even walking on the wing of a glider. 
+                Worked there for 4 years making over 1500 camera jumps. One of the best times of my life.
+            </p>
+            <p>
+                I continued with my photography expanding my skills and  lighting knowledge up to the present day. I am the official photographer at the Bridge View Center for their special events and concerts. 
+                I shoot natural light and multiple flashes to ensure I get the best lighting and mood for each shot.
+            </p>
+            <p>
+                I love capturing those fleeting moments in time for people whether it’s maternity, infant or children, senior pics, family portraits, sporting events, Pets, 
+                Corporate head shots or drone pics of your farm or business.
+            </p>
+            <p>
+                If you are looking for professional results and service at an affordable price give me a call or send  me a message and we can tailor a session to meet your needs.
+            </p>
+        </div>
+    </section>
+    <section id="contact">
+
+        <h1 class="container d-flex justify-content-center align-items-center ">Contact Me</h1>
+        <form action="https://formsubmit.co/rgs.professional.photography@gmail.com" method="POST">
+            <div class="container d-flex justify-content-center align-items-center vh-100"> 
+                <div class="row g-3 w-50 mx-auto"> 
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="name" placeholder="Name" required>
+                        </div>
+                    <div class="col-md-6">
+                        <input type="email" class="form-control" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="col-md-12 mt-3 mb-4">
+                        <textarea class="form-control" rows="5" name="messgae" placeholder="Message" required></textarea>
+                    </div>
+                    <div style=" display: flex; justify-content: center;"> 
+                        <button type="submit" class="btn btn-primary ">Send Message</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </section>
+    
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="static/script.js"></script>
+</body>
+</html>
