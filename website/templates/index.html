@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
 
@@ -18,34 +17,40 @@
         </div>
         
     </header>
-    <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center" style="position: sticky; z-index: 100; top: 0;">
-      <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
-          <ul class="navbar-nav mx-auto text-center nav-fill w-50">
-              <li class="nav-item active">
-                  <a class="nav-link" id="index" href="/">Home<span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="gallery" href="#gallo"> Gallery</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" id="pricing" href="#pic-price">Pricing</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" id="about" href="#about-r">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="about" href="#contact">Cantact</a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
-              <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/reallygreatshots"><i class="fa fa-facebook mr-1"></i></a> </li>
-          </ul>
-      </div>
-    </nav>
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center sticky-top" style="z-index: 100;">
+        <button class="navbar-toggler ml-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapsingNavbar2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
+            <ul class="navbar-nav mx-auto text-center nav-fill w-50">
+                <li class="nav-item active">
+                    <a class="nav-link" id="index" href="/">Home<span class="visually-hidden">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="gallery" href="#gallo">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pricing" href="#pic-price">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="about" href="#about-r">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contac" href="#contact">Contact</a>
+                </li>
+                <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap"></ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.facebook.com/reallygreatshots">
+                        <i class="fa fa-facebook mr-1"></i>
+                    </a>
+                </li>
+            </ul>
+            </ul>
+            
+        </div>
+    </nav>    
+    
     <section  class="intro">
         <div class="welcome">
             <h1 style="font-family: Arial; font-size: 60px;">Welcome</h1>
@@ -60,41 +65,30 @@
         <div class="gallery-buttons">
             <div class="button-group-top">
                 <form method="POST" action="#gallo">
-                    <button type="submit" name="gallery" value="sen-por" class="btn btn-info mb-2 me-2">Senior Portraits</button>
-                    <button type="submit" name="gallery" value="baby-pic" class="btn btn-info mb-2 me-2">Infant & Baby</button>
-                    <button type="submit" name="gallery" value="special-events" class="btn btn-info mb-2 me-2">Special Events</button>
-                    <button type="submit" name="gallery" value="pets" class="btn btn-info mb-2 me-2">Pets</button>
+                    <button type="submit" id="gallery" name="gallery" value="sen-por" class="btn btn-primary mb-2 me-2">Senior Portraits</button>
+                    <button type="submit" id="gallery" name="gallery" value="baby-pic" class="btn btn-primary mb-2 me-2">Infant & Baby</button>
+                    <button type="submit" id="gallery" name="gallery" value="special-events" class="btn btn-primary mb-2 me-2">Special Events</button>
+                    <button type="submit" id="gallery" name="gallery" value="pets" class="btn btn-primary mb-2 me-2">Pets</button>
                 </form>
             </div>
             <div class="button-group-bottom">
                 <form method="POST" action="#gallo">
-                    <button type="submit" name="gallery" value="headshots" class="btn btn-info mb-2 me-2">Corporate Head Shots</button>
-                    <button type="submit" name="gallery" value="sports" class="btn btn-info mb-2 me-2">Sports</button>
-                    <button type="submit" name="gallery" value="landscapes" class="btn btn-info mb-2 me-2">Landscapes</button>
+                    <button type="submit" id="gallery" name="gallery" value="headshots" class="btn btn-primary mb-2 me-2">Corporate Head Shots</button>
+                    <button type="submit" id="gallery" name="gallery" value="sports" class="btn btn-primary mb-2 me-2">Sports</button>
+                    <button type="submit" id="gallery" name="gallery" value="landscapes" class="btn btn-primary mb-2 me-2">Landscapes</button>
                 </form>
             </div>
         </div>  
     </section>
-
-    <section id="carousel-section">
-        <div class="gallery">
-            {% set galleries = {
-                'sen-por': {'path': 'picture/senior-pic/sen-por', 'count': 10},
-                'baby-pic': {'path': 'picture/infant-pic/baby', 'count': 10},
-                'special-events': {'path': 'picture/sp-events-pic/event', 'count': 10},
-                'pets': {'path': 'picture/pets-pic/pet', 'count': 10},
-                'headshots': {'path': 'picture/headshot-pic/headshot', 'count': 10},
-                'sports': {'path': 'picture/sports-pic/sports', 'count': 10},
-                'landscapes': {'path': 'picture/landscape-pic/landscape', 'count': 10}
-            } %}
     
-            {% if selected_gallery in galleries %}
-                {% set gallery = galleries[selected_gallery] %}
+    <section id="carousel-section">
+        <div class="carousel-gallery">
+            {% if image_files %}
                 <div id="{{ selected_gallery }}" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        {% for i in range(1, gallery.count + 1) %}
+                        {% for image_file in image_files %}
                             <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
-                                <img class="mx-auto d-block" src="{{ url_for('static', filename=gallery.path ~ i ~ '.jpg') }}" alt="Slide {{ i }}">
+                                <img src="{{ url_for('static', filename='picture/' ~ categories[selected_gallery] ~ '/' ~ image_file) }}">
                             </div>
                         {% endfor %}
                     </div>
@@ -107,11 +101,14 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
+            {% else %}
+                <p>No images available in this gallery.</p>
             {% endif %}
-        </div>    
-    </section>
+        </div>
+    </section>  
     
-            
+    
+      
     <section id="pic-price" class="ftco-section bg-light">
         <div class="container">
             <div class="row justify-content-center pb-5 mb-3">
@@ -209,10 +206,9 @@
         </div>
     </section>
     <section id="contact">
-
         <h1 class="container d-flex justify-content-center align-items-center ">Contact Me</h1>
         <form action="https://formsubmit.co/rgs.professional.photography@gmail.com" method="POST">
-            <div class="container d-flex justify-content-center align-items-center vh-100"> 
+            <div class="container d-flex justify-content-center align-items-center vh-80"> 
                 <div class="row g-3 w-50 mx-auto"> 
                         <div class="col-md-6">
                             <input type="text" class="form-control" name="name" placeholder="Name" required>
@@ -232,9 +228,7 @@
         
     </section>
     
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="static/script.js"></script>
 </body>
 </html>

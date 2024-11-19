@@ -1,49 +1,72 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, current_app
 import os
 from werkzeug.utils import secure_filename
-from flask_sqlalchemy import SQLAlchemy
 from django.shortcuts import render
 
-db = SQLAlchemy()
-DB_NAME = "datacase.db"
+upload_new_picture = "default.jpg"
 
-# Global variable to store the filename of the "Pic of the Day"
-pic_of_the_day = "default.jpg"
-
-def create_app(): 
+def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'SHHHHH'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    db.init_app(app)
-
-    UPLOAD_FOLDER = 'website/static/images/'
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit upload size to 16MB
-
-    from .views import views
+      
+    app.config['POFD_FOLDER'] = 'website/static/images/'
+    app.config['CAROUSEL_FOLDER'] = 'website/static/picture/'
+    
+    
+    from .views import views 
 
     @app.route('/', methods=['GET', 'POST'])
     def index():
-        # Check if a gallery button was clicked (POST request)
-        selected_gallery = None
-        if request.method == 'POST':
-            selected_gallery = request.form.get('gallery')
+        categories = {
+            "sen-por": "senior-pic",
+            "headshots": "headshot-pic",
+            "baby-pic": "infant-pic",
+            "landscapes": "landscape-pic",
+            "pets": "pets-pic",
+            "special-events": "sp-event-pic",
+            "sports": "sports-pic"
+        }
 
-        # Default to 'sen-por' if no selection
-        if selected_gallery is None:
-            selected_gallery = 'sen-por'
+        # Handle gallery selection via POST
+        selected_category = request.form.get('gallery', 'sen-por')  # Default to 'sen-por'
+        carousel_path = app.config['CAROUSEL_FOLDER']
+        selected_folder = categories.get(selected_category, "senior-pic")
+        gallery_path = os.path.join(carousel_path, selected_folder)
 
-        return render_template('index.html', filename=pic_of_the_day, selected_gallery=selected_gallery)
+        # Fetch image files for the selected category
+        image_files = []
+        if os.path.exists(gallery_path):
+            image_files = [
+                img for img in os.listdir(gallery_path)
+                if img.lower().endswith(('jpg', 'jpeg', 'png', 'gif'))
+            ]
 
-    @app.route('/change-pic')
+        return render_template(
+            'index.html',
+            filename=upload_new_picture,
+            selected_gallery=selected_category,
+            image_files=image_files,
+            categories=categories
+        )
+
+
+
+    
+    @app.route('/changepic')
     def change_pic():
-        # get file name lope
-        return render_template('changepic.html')
+        base_path = os.path.join(app.static_folder, 'picture')
+        categories = ["senior-pic", "headshot-pic", "infant-pic", "landscape-pic", "pets-pic", "sp-event-pic", "sports-pic"]
+        
+        images_by_category = {}
+        for category in categories:
+            category_path = os.path.join(base_path, category)
+            images_by_category[category] = [f'picture/{category}/{img}' for img in os.listdir(category_path) if img.endswith(('jpg', 'jpeg', 'png', 'gif'))]
+        
+        return render_template('changepic.html', images_by_category=images_by_category)
 
-    @app.route('/update-pic', methods=['POST'])
-    def update_pic():
+    @app.route('/update-potd', methods=['POST'])
+    def update_potd():
 
-        global pic_of_the_day  # Declare pic_of_the_day as global
+        global upload_new_picture  
         
         if 'newPic' not in request.files:
             return 'No file part'
@@ -54,18 +77,18 @@ def create_app():
 
         if file:
             # Delete the previous image if it exists
-            if pic_of_the_day:
-                old_filepath = os.path.join(app.config['UPLOAD_FOLDER'], pic_of_the_day)
+            if upload_new_picture:
+                old_filepath = os.path.join(app.config['POFD_FOLDER'], upload_new_picture)
                 if os.path.exists(old_filepath):
                     os.remove(old_filepath)
             
             # Save the new image
             filename = secure_filename(file.filename)
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            filepath = os.path.join(app.config['POFD_FOLDER'], filename)
             file.save(filepath)
             
             # Update the global variable to the new filename
-            pic_of_the_day = filename
+            upload_new_picture = filename
 
              # Path to the picture directory
             picture_folder = os.path.join(app.static_folder, 'picture')
@@ -76,22 +99,38 @@ def create_app():
             
             return redirect(url_for('index', pictures=pictures))
 
-    def carousel_view(request):
-    # Default context with no carousel selected
-        context = {
-            'selected_carousel': None,
-        }
+    @app.route('/update-carousel', methods=['POST'])
+    def update_pic():
+        global upload_new_picture  # Declare upload_new_picture as global
 
-    # Check if the form was submitted with a carousel selection
-        if request.method == "POST":
-            # Get the selected carousel from the form data
-            selected_carousel = request.POST.get('carousel')
+        category = request.form.get('category')
+        file = request.files['newCarousel']
+
+        if not category or not file or file.filename == '':
+            return 'No file or category selected', 400
+
+
+        if file:
+            category_folder = os.path.join(app.static_folder, 'picture', category)
+            if not os.path.exists(category_folder):
+                os.makedirs(category_folder)
             
-            # Pass the selected carousel to the context to render the correct one
-            context['selected_carousel'] = selected_carousel
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(category_folder, filename)
+            file.save(filepath)
+            
+            upload_new_picture = filename
+            return redirect(url_for('change_pic'))
 
-        # Render the template with the selected carousel
-        return render(request, 'carousel_template.html', context)   
-
+    @app.route('/delete-pic', methods=['POST'])
+    def delete_pic():
+        newCarousel = request.form.get('newCarousel')
+        if newCarousel:
+            full_path = os.path.join(app.static_folder, newCarousel)
+            if os.path.exists(full_path):
+                os.remove(full_path)
+                return redirect(url_for('change_pic'))
+        return 'Image not found', 404
+    
     app.register_blueprint(views, url_prefix='/')
     return app
