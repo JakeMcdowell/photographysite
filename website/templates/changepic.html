@@ -32,8 +32,14 @@
             <label for="newCarousel">Select New Picture:</label>
             <input type="file" id="newCarousel" name="newCarousel" accept="image/*" required>
             <button type="submit">Upload Picture</button>
+            <br>
+            <br>
+            <a href="{{ url_for('index') }}" style="text-decoration: none;"></a>
+            <button type="button">Back to Home Website</button>
+        </a>
         </form>
-    </section>
+        
+            </section>
     <section>
         <h2>Current Images</h2>
         {% for category, images in images_by_category.items() %}
