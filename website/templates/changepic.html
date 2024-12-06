@@ -34,9 +34,12 @@
             <button type="submit">Upload Picture</button>
             <br>
             <br>
-            <a href="{{ url_for('index') }}" style="text-decoration: none;"></a>
-            <button type="button">Back to Home Website</button>
-        </a>
+            
+        </form>
+        <form action="{{ url_for('index') }}">
+            <div>
+                <button type="submit">Back to Home Website</button>
+            </div>
         </form>
         
             </section>
