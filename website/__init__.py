@@ -51,7 +51,7 @@ def create_app():
 
 
     
-    @app.route('/changepic')
+    @app.route('/changepic', methods=['GET'])
     def change_pic():
         base_path = os.path.join(app.static_folder, 'picture')
         categories = ["senior-pic", "headshot-pic", "infant-pic", "landscape-pic", "pets-pic", "sp-event-pic", "sports-pic"]
