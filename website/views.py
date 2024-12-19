@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, Flask
 views = Blueprint('views', __name__, static_folder='static')
 
 
-@views.route('/changepic')
-def changepic():
+@views.route('/changepictures')
+def changepictures():
     return render_template('changepic.html')
 
