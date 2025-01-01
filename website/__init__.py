@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, current_app
+from flask import Flask, Blueprint, render_template, request, redirect, url_for, current_app
 import os
 from werkzeug.utils import secure_filename
 from django.shortcuts import render
@@ -7,6 +7,7 @@ upload_new_picture = "default.jpg"
 
 def create_app():
     app = Flask(__name__)
+    
       
     app.config['POFD_FOLDER'] = 'website/static/images/'
     app.config['CAROUSEL_FOLDER'] = 'website/static/picture/'
