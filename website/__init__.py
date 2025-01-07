@@ -67,33 +67,28 @@ def create_app():
         global upload_new_picture
         
         if 'newPic' not in request.files:
+            current_app.logger.error('No file part in request')
             return 'No file part', 400
         
         file = request.files['newPic']
         if file.filename == '':
+            current_app.logger.error('No selected file')
             return 'No selected file', 400
 
         if file:
-            # Delete the previous image if it exists
             if upload_new_picture:
                 old_filepath = os.path.join(app.config['POFD_FOLDER'], upload_new_picture)
                 if os.path.exists(old_filepath):
                     os.remove(old_filepath)
-            # Save the new image
+
             filename = secure_filename(file.filename)
             filepath = os.path.join(app.config['POFD_FOLDER'], filename)
             file.save(filepath)
-            
+
             upload_new_picture = filename
+            current_app.logger.info(f'Updated POTD to {upload_new_picture}')
 
-             # Path to the picture directory
-            picture_folder = os.path.join(app.static_folder, 'picture')
-            
-            # Get all image filenames in the picture directory
-            pictures = [f'picture/{file}' for file in os.listdir(picture_folder) if file.endswith(('jpg', 'jpeg', 'png', 'gif'))]
-
-            
-            return redirect(url_for('index', pictures=pictures))
+            return redirect(url_for('index'))
 
     @app.route('/update-carousel', methods=['POST'])
     def update_pic():
